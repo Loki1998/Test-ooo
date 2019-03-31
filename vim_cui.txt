@@ -1042,7 +1042,7 @@
     " vim-airline {
         " Set configuration options for the statusline plugin vim-airline.
         " Use the powerline theme and optionally enable powerline symbols.
-        " To use the symbols «ó, «ô, «õ, «ö, «ã, «å, and «ä.in the statusline
+        " To use the symbols î‚°, î‚±, î‚², î‚³, î‚ , î‚¢, and î‚¡.in the statusline
         " segments add the following to your .vimrc.before.local file:
         "   let g:airline_powerline_fonts=1
         " If the previous symbols do not render for you then install a
@@ -1251,11 +1251,8 @@
 " }
 
 
-
 autocmd BufNewFile *.py,*.sh exec ":call SetTitle()"
-""¶¨Òåº¯ÊıSetTitle£¬×Ô¶¯²åÈëÎÄ¼şÍ·
 func SetTitle()
-        "Èç¹ûÎÄ¼şÀàĞÍÎª.shÎÄ¼ş
         if &filetype == 'sh'
                 call setline(1,"\#########################################################################")
                 call append(line("."), "\# File Name: ".expand("%"))
@@ -1285,7 +1282,6 @@ func SetTitle()
                 call append(line(".")+4, " **********************************************************************/
                 call append(line(".")+5, "")
         endif
-		"ĞÂ½¨ÎÄ¼şºó£¬×Ô¶¯¶¨Î»µ½ÎÄ¼şÄ©Î²
         autocmd BufNewFile * normal G
 endfunc
 
