@@ -1,0 +1,35 @@
+" setTitle
+autocmd BufNewFile *.[ch],*.hpp,*.cpp,Makefile,*.mk,*.sh exec ":call SetTitle()" 
+
+func SetTitle()
+	if &filetype == 'make' 
+		call setline(1,"") 
+		call setline(2,"")
+		 
+	elseif &filetype == 'sh' 
+		call setline(1,"#!/system/bin/sh") 
+		call setline(2,"")
+		
+	else
+	     if expand("%:e") == 'hpp' 
+		  call append(line(".")+10, "#ifndef _".toupper(expand("%:t:r"))."_H") 
+		  call append(line(".")+11, "#define _".toupper(expand("%:t:r"))."_H") 
+		  call append(line(".")+12, "#ifdef __cplusplus") 
+		  call append(line(".")+13, "extern \"C\"") 
+		  call append(line(".")+14, "{") 
+		  call append(line(".")+15, "#endif") 
+		  call append(line(".")+16, "") 
+		  call append(line(".")+17, "#ifdef __cplusplus") 
+		  call append(line(".")+18, "}") 
+		  call append(line(".")+19, "#endif") 
+		  call append(line(".")+20, "#endif //".toupper(expand("%:t:r"))."_H") 
+ 
+	     elseif expand("%:e") == 'h' 
+	  	call append(line(".")+10, "#pragma once") 
+	     elseif &filetype == 'c' 
+	  	call append(line(".")+10,"#include \"".expand("%:t:r").".h\"") 
+	     elseif &filetype == 'cpp' 
+	  	call append(line(".")+10, "#include \"".expand("%:t:r").".h\"") 
+	     endif
+	endif
+endfunc
